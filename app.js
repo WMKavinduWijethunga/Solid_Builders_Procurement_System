@@ -43,9 +43,9 @@ app.get('',(req,res) => {
 }); 
 
 //create routes
-/*const routes = require('./server/routes/your file name');
-app.use('/',routes);*/
-
+//const routes = require('./server/routes/supplier');
+//app.use('/',require('./server/routes/supplier'));
+app.use('/',require('./server/routes/supplier'));
 
 app.listen(port,() => console.log(`Listening on port ${port}`));
 

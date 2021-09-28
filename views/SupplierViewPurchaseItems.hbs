@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-6"><h3>{{pid}}</h3></div>
+</div>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Item Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {{#each rows}}
+        <tr>
+            <td>{{this.itemName }}</td>
+            <td>{{this.price}}</td>
+            <td>{{this.quantity}}</td>
+        </tr>
+        {{/each}}
+
+    </tbody>
+</table>
+
+<a href="/insertQuotation/{{pid}}"><button>Send Quotation</button></a>

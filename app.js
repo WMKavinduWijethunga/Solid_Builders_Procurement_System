@@ -35,16 +35,7 @@ pool.getConnection((err, connection) =>{
     if(err) throw err; // not connected
     console.log('Connected as ID' + connection.threadId);
 });
-
-
-//Router
-app.get('',(req,res) => {
-    res.render('webHome');
-}); 
-
-//create routes
-//const routes = require('./server/routes/supplier');
-//app.use('/',require('./server/routes/supplier'));
+app.use('/',require('./server/routes/main'));
 app.use('/',require('./server/routes/supplier'));
 
 app.listen(port,() => console.log(`Listening on port ${port}`));

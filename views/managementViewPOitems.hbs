@@ -1,0 +1,32 @@
+<form action="/sendManageApproval" method="POST">
+    {{#each row2}}
+    <div class="form-group col-3">
+        <label for="inputAddress">Requisition Number</label>
+        <input type="text" class="form-control" value="{{this.orderID}}" name="orderID" readonly>
+    </div>
+    <div class="form-group col-3">
+        <label for="inputAddress">Site Manager</label>
+        <input type="text" class="form-control" value="{{this.siteManName}}" id="inputAddress" readonly>
+    </div>
+    <div class="form-group col-3">
+        <label for="inputAddress">Submitted Date</label>
+        <input type="text" class="form-control" value="{{this.orderDate}}" id="inputAddress" readonly>
+    </div>
+    <div class="form-group col-3">
+        <label for="inputAddress">Site Name</label>
+        <input type="text" class="form-control" value="{{this.siteName}}" id="inputAddress" readonly>
+    </div>
+    <div class="form-group col-3">
+        <label for="inputAddress">Total Amount</label>
+        <input type="text" class="form-control" value="{{this.total}}" id="inputAddress" readonly>
+    </div>
+    {{/each}}
+    {{#each row3}}
+    <div class="form-group col-3">
+        <label for="inputAddress">Budget</label>
+        <input type="text" class="form-control" value="{{this.budget}}" id="inputAddress" readonly>
+    </div>
+    {{/each}}
+    <input type="submit" value="Approve" name="btntoManage">
+    <input type="submit" value="Reject" name="btntoManage"> 
+</form>

@@ -38,6 +38,7 @@ pool.getConnection((err, connection) =>{
 app.use('/',require('./server/routes/main'));
 app.use('/',require('./server/routes/supplier'));
 app.use('/',require('./server/routes/staff'));
+app.use('/',require('./server/routes/management'));
 
 
 app.listen(port,() => console.log(`Listening on port ${port}`));

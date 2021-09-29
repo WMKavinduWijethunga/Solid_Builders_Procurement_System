@@ -37,6 +37,33 @@ exports.viewPurchasedOrder = (req, res) => {
 
 }
 
+//view for mangement
+exports.viewPOManagement = (req, res) => {
+    
+
+    //connect to DB
+    pool.getConnection((err, connection) => {
+        if (err) throw err; // not connected
+        console.log('Connected as ID' + connection.threadId);
+
+        connection.query('SELECT * FROM solidbuilders.purchaseorder WHERE approval = ? ',["Management"], (err,rows) =>{
+            
+            connection.release();
+
+            if(!err){ 
+                res.render('managementPOView', {rows});
+            }else{
+                console.log(err);
+            }
+
+            
+        });
+       
+    });
+
+}
+
+
 exports.riddirectMainPage = (req, res) => {
  
      res.render('webHome');
@@ -70,5 +97,12 @@ exports.viewRequisition = (req, res) => {
         });
        
     });
+
+}
+
+exports.login = (req, res) => {
+    
+
+    res.render('SupplierViewPurchaseItems');
 
 }

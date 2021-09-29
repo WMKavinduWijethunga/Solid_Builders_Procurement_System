@@ -1,6 +1,7 @@
 .home-container{
     height: 100%;
     background-image: url("../resources/hbackground.jpg");
+    background-size: cover;
 }
 .home-heading-container{
     padding-top: 30px;

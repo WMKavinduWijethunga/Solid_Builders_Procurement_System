@@ -1,11 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const supController = require('../controllers/mainController'); 
+const mainController = require('../controllers/mainController'); 
 
-router.get('/',supController.riddirectMainPage);
+router.get('/',mainController.riddirectMainPage);
 
-router.get('/supplierpage',supController.viewPurchasedOrder);
+router.get('/supplierpage',mainController.viewPurchasedOrder);
 
-router.get('/reqManagement',supController.viewRequisition);
+router.get('/reqManagement',mainController.viewRequisition);
+
+router.get('/managementView',mainController.viewPOManagement);
+
+router.get('/login', mainController.login);
 
 module.exports = router;

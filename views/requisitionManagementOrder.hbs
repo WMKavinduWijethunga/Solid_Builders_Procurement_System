@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-6"><h3>Purchase Orders</h3></div>
+</div>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Order Date</th>
+            <th scope="col">To be delivered by</th>
+            <th scope="col">Approval</th>
+            <th scope="col">Manager Name</th>
+            <th scope="col">Site Name</th>
+            <th scope="col">Comments</th>
+            <th scope="col">Total</th>
+            <th scope="col" class="text-end">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each rows}}
+        <tr>
+            <th scope="row">{{this.orderID }}</th>
+            <td>{{this.orderDate}}</td>
+            <td>{{this.deliveryDate}}</td>
+            <td>{{this.approval}}</td>
+            <td>{{this.siteManName}}</td>
+            <td>{{this.siteName}}</td>
+            <td>{{this.comment}}</td>
+             <td>{{this.total}}</td>
+            <td class="text-end">
+                <a href="/StaffviewReqItems/{{this.orderID}}" type="button" class="btn btn-dark btn-small"><i class="bi bi-eye"></i>View</a>
+                
+
+            </td>
+        </tr>
+        {{/each}}
+
+    </tbody>
+</table>

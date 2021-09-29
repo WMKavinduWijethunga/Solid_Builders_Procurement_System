@@ -47,3 +47,28 @@ exports.riddirectSupplierPage = (req, res) => {
     res.render('supplierViewPurchasedOrder');
    
 }
+
+exports.viewRequisition = (req, res) => {
+    
+
+    //connect to DB
+    pool.getConnection((err, connection) => {
+        if (err) throw err; // not connected
+        console.log('Connected as ID' + connection.threadId);
+
+        connection.query('SELECT * FROM solidbuilders.purchaseorder where approval =? or approval =? or approval =?' ,["Needed", "Approve", "Management"], (err,rows) =>{
+            
+            connection.release();
+
+            if(!err){ 
+                res.render('requisitionManagementOrder', {rows});
+            }else{
+                console.log(err);
+            }
+
+            
+        });
+       
+    });
+
+}

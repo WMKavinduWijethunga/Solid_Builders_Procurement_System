@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-6">
+        <h3>Supplier Quotations</h3>
+    </div>
+</div>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Supplier ID</th>
+            <th scope="col">Order ID</th>
+            <th scope="col">Status</th>
+            <th scope="col">Date</th>
+            <th scope="col" class="text-end">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each rows}}
+        <tr>
+            <th scope="row">{{this.qID }}</th>
+            <td>{{this.supplierID}}</td>
+            <td>{{this.orderID}}</td>
+            <td>{{this.status}}</td>
+            <td>{{this.quotaionDate}}</td>
+            <td class="text-end">
+                <div class="d-flex justify-content-end">
+                    <div>
+                        <a href="/viewSupQutoItems/{{this.qID}}" type="button" class="btn btn-dark btn-small"><i
+                                class="bi bi-eye"></i>View</a>
+                    </div>
+
+                    <div style="margin-left: 10dp;">
+                        <form action="/approvelowBu/{{this.qID}}" method="POST">
+                            <input type="submit" class="btn btn-dark btn-small" value="Approve" name="btntoDeliverysts">
+                        </form>
+                    </div>
+
+                </div>
+
+            </td>
+
+        </tr>
+        {{/each}}
+
+    </tbody>
+</table>

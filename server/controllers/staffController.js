@@ -90,3 +90,108 @@ exports.updateStaffApproval = (req, res) => {
     }); 
 
 }
+
+//compare deliveries with porder
+exports.compareView = (req, res) => {
+
+    //connect to DB
+    pool.getConnection((err, connection) => {
+        if (err) throw err; // not connected
+        console.log('Connected as ID' + connection.threadId);
+
+        var sql1 = 'SELECT * FROM solidbuilders.quotaiondetail WHERE qID = ?';
+        var sql2 = 'SELECT * FROM solidbuilders.quotation WHERE qID = ?'
+        var sql3 = 'SELECT * FROM solidbuilders.purchaseorderitems WHERE purchOID = ?'
+
+        connection.query(sql1, [req.params.qID], (err, rowQuoatationItems) => {
+
+            if (!err) {
+
+                connection.query(sql2, [req.params.qID], (err, rowQuoatation) => {
+
+                    if (!err) {
+
+                        orderID = rowQuoatation[0].orderID;
+
+                        connection.query(sql3, [orderID], (err, rowPOItems) => {
+                            connection.release();
+
+                            if (!err) {
+
+                                res.render('staffCompareView', { rowQuoatationItems: rowQuoatationItems, rowQuoatation: rowQuoatation, rowPOItems: rowPOItems});
+
+                            } else {
+                                console.log(err);
+                            }
+
+                        });
+
+                    } else {
+                        console.log(err);
+                    }
+
+                });
+
+            } else {
+                console.log(err);
+            }
+
+        });
+
+    });
+
+}
+
+//complete or decline the deliveries
+exports.updateDeliveryStatus = (req, res) => {
+
+    let btntoDeliverysts = req.body.btntoDeliverysts;
+
+    //connect to DB
+    pool.getConnection((err, connection) => {
+        if (err) throw err; // not connected
+        console.log('Connected as ID' + connection.threadId);
+
+        connection.query('UPDATE deliverydetails SET deliveryStatus = ? where qID = ?',[btntoDeliverysts,req.params.qID], (err,rows) =>{
+            
+            connection.release();
+
+            if(!err){ 
+                res.render('webHome');
+            }else{
+                console.log(err);
+            }
+
+        });
+       
+    }); 
+
+}
+
+//add Payment
+exports.addPaymentbyStaff = (req, res) => {
+
+    let amount = req.body.amount;
+    let type = req.body.type;
+    let date = req.body.date;
+
+    //connect to DB
+    pool.getConnection((err, connection) => {
+         if (err) throw err; // not connected
+         console.log('Connected as ID' + connection.threadId);
+
+         connection.query('INSERT INTO payment SET amount = ?, type = ?, date = ?',[amount,type,date], (err,rows) =>{
+            
+             connection.release();
+
+             if(!err){ 
+                 res.render('webHome');
+             }else{
+                 console.log(err);
+             }
+
+         });
+       
+     }); 
+
+}

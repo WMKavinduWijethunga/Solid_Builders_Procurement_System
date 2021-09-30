@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-6"><h3>Incompleted Deliveries</h3></div>
+</div>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Delivered Date</th>
+            <th scope="col">Delivery Status</th>
+            <th scope="col" class="text-end">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each rows}}
+        <tr>
+            <th scope="row">{{this.deliveryID}}</th>
+            <td>{{this.date}}</td>
+            <td>{{this.deliveryStatus}}</td>
+            <td class="text-end">
+                <a href="/compareOrder/{{this.qID}}" type="button" class="btn btn-dark btn-small"><i class="bi bi-card-checklist"></i>Compare</a>
+            </td>
+        </tr>
+        {{/each}}
+
+    </tbody>
+</table>

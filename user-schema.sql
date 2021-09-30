@@ -13,4 +13,14 @@ ALTER TABLE `site` ADD `siteName` VARCHAR(50) NOT NULL AFTER `location`;
 
 ALTER TABLE `purchaseorder` CHANGE `orderDate` `orderDate` VARCHAR(25) NOT NULL; 
 
+
+//2021-09-30
 ALTER TABLE `purchaseorder` CHANGE `deliveryDate` `deliveryDate` VARCHAR(25) NOT NULL; 
+
+ALTER TABLE `deliverydetails` ADD `deliveryStatus` VARCHAR(30) NOT NULL AFTER `contactNo`; 
+
+ALTER TABLE `deliverydetails` CHANGE `date` `date` VARCHAR(25) NOT NULL; 
+
+ALTER TABLE `payment` CHANGE `amount` `amount` DOUBLE NOT NULL; 
+
+ALTER TABLE `payment` ADD `date` VARCHAR(25) NOT NULL AFTER `type`; 

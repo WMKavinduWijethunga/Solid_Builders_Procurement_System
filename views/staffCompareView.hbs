@@ -1,0 +1,58 @@
+<div class="row">
+    {{#each rowQuoatation}}
+    <div class="col-6"><h3>Invoice no : {{this.qID}}</h3></div>
+    {{/each}}
+</div>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Item Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price (LKR)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each rowQuoatationItems}}
+        <tr>
+            <th scope="row">{{this.itemName}}</th>
+            <td>{{this.quantity}}</td>
+            <td>{{this.price}}</td>
+        </tr>
+        {{/each}}
+
+    </tbody>
+</table>
+
+<div class="row">
+    {{#each rowQuoatation}}
+    <div class="col-6"><h3>Sent Purchase Order No : {{this.orderID}}</h3></div>
+    {{/each}}
+</div>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Item Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price (LKR)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each rowPOItems}}
+        <tr>
+            <th scope="row">{{this.itemName}}</th>
+            <td>{{this.quantity}}</td>
+            <td>{{this.price}}</td>
+        </tr>
+        {{/each}}
+
+    </tbody>
+</table>
+
+{{#each rowQuoatation}}
+<form action="/completeDelivery/{{this.qID}}" method="POST">
+    <input type="submit" value="Completed" name="btntoDeliverysts">
+    <input type="submit" value="Declined" name="btntoDeliverysts">
+</form>
+{{/each}}

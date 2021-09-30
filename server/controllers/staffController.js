@@ -195,3 +195,78 @@ exports.addPaymentbyStaff = (req, res) => {
      }); 
 
 }
+
+//read all supplier quotation
+exports.ViewSupAllQuoto = (req, res) => {
+    
+
+    //connect to DB
+    pool.getConnection((err, connection) => {
+        if (err) throw err; // not connected
+        console.log('Connected as ID' + connection.threadId);
+
+        connection.query('SELECT * FROM solidbuilders.quotation', (err,rows) =>{
+            
+            connection.release();
+
+            if(!err){ 
+                res.render('staffViewSupQuotation', {rows});
+            }else{
+                console.log(err);
+            }
+
+            
+        });
+       
+    });
+
+}
+
+//read supllier quotation item detals individually
+exports.ViewSupQuotoItems = (req, res) => {
+
+    //connect to DB
+    pool.getConnection((err, connection) => {
+        if (err) throw err; // not connected
+        console.log('Connected as ID' + connection.threadId);
+
+        connection.query('SELECT * FROM solidbuilders.quotaiondetail WHERE qID = ?',[req.params.qid], (err,rows) =>{
+            
+            connection.release();
+
+            if(!err){ 
+                res.render('ViewSupQutoDetails', {rows,qid:req.params.qid});
+            }else{
+                console.log(err);
+            }
+
+        });
+       
+    });
+    
+}
+
+//approve low budget quotation
+exports.approvelowBudQuotation = (req, res) => {
+
+
+    //connect to DB
+    pool.getConnection((err, connection) => {
+        if (err) throw err; // not connected
+        console.log('Connected as ID' + connection.threadId);
+
+        connection.query('UPDATE solidbuilders.quotation SET status = ? where qID = ?',["Approve",req.params.qid], (err,rows) =>{
+            
+            connection.release();
+
+            if(!err){ 
+                res.redirect('/');
+            }else{
+                console.log(err);
+            }
+
+        });
+       
+    }); 
+
+}

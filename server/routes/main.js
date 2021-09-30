@@ -12,4 +12,8 @@ router.get('/managementView',mainController.viewPOManagement);
 
 router.get('/login', mainController.login);
 
+router.get('/viewNCompletedDeliveries',mainController.viewNotCompletedDeliveries);
+
+router.get('/addPayment', mainController.goToAddPaymentPage);
+
 module.exports = router;

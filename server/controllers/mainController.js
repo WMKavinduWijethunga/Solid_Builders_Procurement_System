@@ -106,3 +106,36 @@ exports.login = (req, res) => {
     res.render('SupplierViewPurchaseItems');
 
 }
+
+//view Not completed deliveries
+exports.viewNotCompletedDeliveries = (req, res) => {
+    
+
+    //connect to DB
+    pool.getConnection((err, connection) => {
+        if (err) throw err; // not connected
+        console.log('Connected as ID' + connection.threadId);
+
+        connection.query('SELECT * FROM solidbuilders.deliverydetails where deliveryStatus = ?' ,["Not Completed"], (err,rows) =>{
+            
+            connection.release();
+
+            if(!err){ 
+                res.render('staffViewNCompletedDeliveries', {rows});
+            }else{
+                console.log(err);
+            }
+
+            
+        });
+       
+    });
+
+}
+
+//go to payment form
+exports.goToAddPaymentPage = (req,res) => {
+
+    res.render('staffAddPayment');
+
+}

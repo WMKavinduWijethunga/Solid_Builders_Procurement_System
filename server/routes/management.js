@@ -7,4 +7,7 @@ router.post('/sendManageApproval',manageController.updateManagementApproval);
 router.get('/viewApprovalManagement',manageController.viewApprovedPOrders);
 router.get('/managementViewQuoatationItems/:qID',manageController.viewMQuoatation);
 
+//management login form
+router.post('/managementLoginValidation' , manageController.managementLoginValidation);
+
 module.exports = router;

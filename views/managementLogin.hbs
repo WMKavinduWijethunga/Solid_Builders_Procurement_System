@@ -1,0 +1,48 @@
+<div class="col-6">
+    <h1>Management Login</h1>
+    <h3>Please enter your login credentials</h3>
+</div>
+
+<form method="POST" action="/managementLoginValidation" class="needs-validation" novalidate>
+    <div class="col-3">
+        <label for="exampleInputEmail1" class="form-label">Username</label>
+        <input type="text" class="form-control" id="validationCustom01" name="manUsername" aria-describedby="emailHelp" required>
+        <div class="invalid-feedback">
+            Please enter your username
+        </div>
+    </div>
+    <div class="col-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" id="validationCustom02" name="manPassword" aria-describedby="emailHelp" required>
+        <div class="invalid-feedback">
+            Please enter your password
+        </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+<script>
+
+    (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+
+</script>

@@ -270,3 +270,30 @@ exports.approvelowBudQuotation = (req, res) => {
     }); 
 
 }
+
+//staff login
+exports.staffLoginValidation = (req, res) => {
+
+    let stUsername = req.body.stUsername;
+    let stPassword = req.body.stPassword;
+
+    //connect to DB
+    pool.getConnection((err, connection) => {
+        if (err) throw err; // not connected
+        console.log('Connected as ID' + connection.threadId);
+
+        connection.query('SELECT * FROM solidbuilders.staff WHERE usename = ? AND password = ?',[stUsername,stPassword], (err,rowStaff) =>{
+            
+            connection.release();
+
+            if(!err){ 
+                res.render('staffDashboard', {rowStaff});
+            }else{
+                console.log(err);
+            }
+
+        });
+       
+    });
+
+}

@@ -100,10 +100,11 @@ exports.viewRequisition = (req, res) => {
 
 }
 
-exports.login = (req, res) => {
+//retireving to staff, management login select
+exports.loginCompanySide = (req, res) => {
     
 
-    res.render('SupplierViewPurchaseItems');
+    res.render('companyLoginSelect');
 
 }
 
@@ -137,5 +138,19 @@ exports.viewNotCompletedDeliveries = (req, res) => {
 exports.goToAddPaymentPage = (req,res) => {
 
     res.render('staffAddPayment');
+
+}
+
+//go to staff login page
+exports.staffLoginView = (req, res) => {
+
+    res.render('staffLogin');
+
+}
+
+//go to management login page
+exports.managementLoginView = (req, res) => {
+
+    res.render('managementLogin');
 
 }

@@ -25,5 +25,8 @@ router.get('/viewSupQutoItems/:qid',staffController.ViewSupQuotoItems);
 //approve low budget quotation
 router.post('/approvelowBu/:qid',staffController.approvelowBudQuotation);
 
+//staff login
+router.post('/staffLoginValidation' , staffController.staffLoginValidation);
+
 
 module.exports = router; 

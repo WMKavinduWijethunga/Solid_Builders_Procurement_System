@@ -139,3 +139,30 @@ exports.viewMQuoatation = (req, res) => {
     });
 
 }
+
+//management login
+exports.managementLoginValidation = (req, res) => {
+
+    let stUsername = req.body.manUsername;
+    let stPassword = req.body.manPassword;
+
+    //connect to DB
+    pool.getConnection((err, connection) => {
+        if (err) throw err; // not connected
+        console.log('Connected as ID' + connection.threadId);
+
+        connection.query('SELECT * FROM solidbuilders.manager WHERE username = ? AND password = ?',[stUsername,stPassword], (err,rowManagement) =>{
+            
+            connection.release();
+
+            if(!err){ 
+                res.render('managementDashboard', {rowManagement});
+            }else{
+                console.log(err);
+            }
+
+        });
+       
+    });
+
+}

@@ -6,7 +6,7 @@ const pool = mysql.createPool({
     connectionLimit: 100,
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
-    password: process.env.DB_PASS,
+    password: process.env.DB_PASS, 
     database: process.env.DB_NAME,
     port: 3307
 
@@ -17,7 +17,7 @@ const pool = mysql.createPool({
 exports.ViewSupPurchItemPage = (req, res) => {
 
     //connect to DB
-    pool.getConnection((err, connection) => {
+    pool.getConnection((err, connection) => { 
         if (err) throw err; // not connected
         console.log('Connected as ID' + connection.threadId);
 
@@ -39,6 +39,7 @@ exports.ViewSupPurchItemPage = (req, res) => {
 
 exports.ViewInsertQuotationPage = (req, res) => {
 
+    let num = 1;
     //connect to DB
     pool.getConnection((err, connection) => {
         if (err) throw err; // not connected
@@ -49,7 +50,7 @@ exports.ViewInsertQuotationPage = (req, res) => {
             connection.release();
 
             if(!err){ 
-                res.render('supplierQuotationInsert', {rows,q_pid:req.params.pid});
+                res.render('supplierQuotationInsert', {rows,q_pid:req.params.pid,num:num});
             }else{
                 console.log(err);
             }

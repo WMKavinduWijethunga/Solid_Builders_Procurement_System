@@ -98,7 +98,7 @@ exports.viewApprovedPOrders = (req, res) => {
         if (err) throw err; // not connected
         console.log('Connected as ID' + connection.threadId);
 
-        connection.query('SELECT * FROM solidbuilders.quotation WHERE status = ? ',["Pending"], (err,rows) =>{
+        connection.query('SELECT * FROM solidbuilders.purchaseorder WHERE approval = ? ',["Approve"], (err,rows) =>{
             
             connection.release();
 

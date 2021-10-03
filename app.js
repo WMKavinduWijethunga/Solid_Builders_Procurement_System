@@ -40,9 +40,9 @@ app.use("/", require("./server/routes/supplier"));
 app.use("/", require("./server/routes/staff"));
 app.use("/", require("./server/routes/management"));
 
- 
- 
-let number = 0;
+
+
+/*let number = 0;
 app.engine(
   "hbs",
   exphbs({
@@ -67,6 +67,6 @@ app.engine(
       },
     },
   })
-);
+);*/
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

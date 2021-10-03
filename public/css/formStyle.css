@@ -11,15 +11,12 @@
 ;
 
  
-  width: 30vw;
+  width: 50%;
   margin: 20px auto;
   background: white;
   border-radius: 7px;
   background-color: aliceblue;
   padding: 50px 100px;
-  margin-left:600px;
-
-
 }
 
 .form-group{

@@ -1,31 +1,54 @@
-.home-container{
-    height: 100%;
-    background-image: url("../resources/hbackground.jpg");
-    background-size: cover;
+.home-container {
+  height: 100%;
+  background-image: url("../resources/hbackground.jpg");
+  background-size: cover;
 }
-.home-heading-container{
-    padding-top: 30px;
+.home-heading-container {
+  padding-top: 30px;
 }
-.home-heading :first-child{
-    color: white;
-
+.home-heading :first-child {
+  color: white;
 }
-.card-container{
-    width: 100%;
-    padding: 30px;
+.card-container {
+  width: 100%;
+  padding: 30px;
 }
-.card-con-padding{
-    margin-left: 20px !important;
+.card-con-padding {
+  margin-left: 20px !important;
 }
-.card-img-center{
-    
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 100%;
-        padding-top: 10px;
-      
+.card-img-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding-top: 10px;
 }
-.card-txt-center{
-    text-align: center;
+.card-txt-center {
+  text-align: center;
+}
+.dash-background {
+  padding: 30px;
+  background-color: #bdfbb4;
+  margin-right: 20px;
+  width: 20%;
+}
+.btn-groups a {
+  background-color: #188d62; /* Green background */
+  margin-top: 20px;
+  border-style: none;
+  color: white; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  width: 100%; /* Set a width if needed */
+  display: block; /* Make the buttons appear below each other */
+}
+.center-content {
+  margin-left: auto;
+  margin-right: auto;
+}
+.set-tb-width {
+  width: 80%;
+}
+.set-btn-margin {
+  margin-right: 20px;
 }

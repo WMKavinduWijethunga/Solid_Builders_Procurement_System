@@ -1,28 +1,35 @@
 <div class="row">
-    <div class="col-6"><h3>Pending Quotations</h3></div>
+    <div>
+        <h3>Approved Orders</h3>
+    </div>
 </div>
 
-<table class="table">
+<table class="table table-striped table-light table-hover">
     <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Supplier ID</th>
             <th scope="col">Order ID</th>
-            <th scope="col">Status</th>
-            <th scope="col">Quotation Date</th>
+            <th scope="col">Delivery Date</th>
+            <th scope="col">Manager Name</th>
+            <th scope="col">Site</th>
+            <th scope="col">Comment</th>
+            <th scope="col">Total</th>
             <th scope="col" class="text-end">Action</th>
         </tr>
     </thead>
     <tbody>
         {{#each rows}}
         <tr>
-            <th scope="row">{{this.qID}}</th>
-            <td>{{this.supplierID}}</td>
-            <td>{{this.orderID}}</td>
-            <td>{{this.status}}</td>
-            <td>{{this.quotaionDate}}</td>
+            <th scope="row">{{this.orderID }}</th>
+            <td>{{this.orderDate}}</td>
+            <td>{{this.deliveryDate}}</td>
+            <td>{{this.siteManName}}</td>
+            <td>{{this.siteName}}</td>
+            <td>{{this.comment}}</td>
+            <td>{{this.total}}</td>
             <td class="text-end">
-                <a href="/managementViewQuoatationItems/{{this.qID}}" type="button" class="btn btn-dark btn-small"><i class="bi bi-eye"></i>View</a>
+                <a href="/managementViewQuoatationItems/{{this.qID}}" type="button" class="btn btn-dark btn-small"><i
+                        class="bi bi-eye"></i>View</a>
             </td>
         </tr>
         {{/each}}

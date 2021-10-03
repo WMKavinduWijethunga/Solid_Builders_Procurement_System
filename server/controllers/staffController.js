@@ -288,7 +288,11 @@ exports.staffLoginValidation = (req, res) => {
             connection.release();
 
             if(!err){ 
-                res.render('staffDashboard', {rowStaff});
+                if(rowStaff.length==0){
+                    res.render('webHome');
+                }else{
+                    res.render('staffDashboard', {rowStaff});
+                }
             }else{
                 console.log(err);
             }

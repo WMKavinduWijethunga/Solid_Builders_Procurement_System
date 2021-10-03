@@ -22,6 +22,9 @@ router.get('/loginStaff' , mainController.staffLoginView);
 //management login form
 router.get('/loginManagement' , mainController.managementLoginView);
 
+//staff login form
+router.get('/suplog' , mainController.supplierLogin);
+
 
 
 

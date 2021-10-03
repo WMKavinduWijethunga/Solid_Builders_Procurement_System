@@ -65,10 +65,18 @@ exports.ViewInsertQuotationPage = (req, res) => {
 exports.createquotation = (req, res) => {
 
     let status = "Pending";
+    
+    const array=
+    {
+        qty : qty,
+        price: price,
+        itemName:itemName
+    }
+     = req.body;
+    
 
     const{quotaionDate,orderID,supplierID} = req.body;
 
-    
     //connect to DB
     pool.getConnection((err, connection) => {
         if (err) throw err; // not connected
@@ -76,11 +84,28 @@ exports.createquotation = (req, res) => {
 
         connection.query('INSERT INTO solidbuilders.quotation SET supplierID = ?, orderID = ?, status = ?, quotaionDate = ?',[supplierID,orderID,status,quotaionDate], (err,result,rows) =>{
             
-            connection.release();
+            
+            let quotID = result.insertId;
 
             if(!err){ 
-                res.render('supplierQuotationInsert');
-                console.log(result.insertId); 
+                
+                for (let i = 0; i < itemName.length; i++) {
+                    
+                    connection.query('INSERT INTO solidbuilders.quotaiondetail SET qID = ?, itemName = ?, quantity = ?, price = ?',[quotID,itemName[i],qty[i],price[i]], (err,result,rows) =>{
+            
+                        if(!err){ 
+                            
+                        }else{
+                            console.log(err);
+                            
+                        }
+            
+                    });
+                   
+                }
+                connection.release();
+                res.redirect('/');
+               
             }else{
                 console.log(err);
                 

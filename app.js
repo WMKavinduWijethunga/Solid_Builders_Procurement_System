@@ -4,6 +4,7 @@ const mysql = require("mysql");
 const bodyParser = require("body-parser");
 require("dotenv").config();
 
+
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -39,6 +40,8 @@ app.use("/", require("./server/routes/supplier"));
 app.use("/", require("./server/routes/staff"));
 app.use("/", require("./server/routes/management"));
 
+ 
+ 
 let number = 0;
 app.engine(
   "hbs",
@@ -46,12 +49,21 @@ app.engine(
     defaultLayout: "main",
     extname: ".hbs",
     helpers: {
-      getShortComment() {
+      getQuantity() {
+        let qty = "qty";
         number = number + 1;
-        return number;
+        return qty + number;
       },
-      clearNumber() {
+      clearQuantity() {
         number = 0;
+      },
+      getPrice() {
+        let price = "price";
+        count = count + 1;
+        return price + number;
+      },
+      clearPrice() {
+        count = 0;
       },
     },
   })

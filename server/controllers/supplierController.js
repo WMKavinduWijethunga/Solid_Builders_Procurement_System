@@ -116,3 +116,30 @@ exports.createquotation = (req, res) => {
     });
 
 }
+
+//supplier login
+exports.supLoginValidation = (req, res) => {
+
+    let supUsername = req.body.supUsername;
+    let supPassword = req.body.supPassword;
+
+    //connect to DB
+    pool.getConnection((err, connection) => {
+        if (err) throw err; // not connected
+        console.log('Connected as ID' + connection.threadId);
+
+        connection.query('SELECT * FROM solidbuilders.supplier WHERE username = ? AND password = ?',[supUsername,supPassword], (err,rowSup) =>{
+            
+            connection.release();
+
+            if(!err){ 
+                res.render('staffDashboard', {rowSup});
+            }else{
+                console.log(err);
+            }
+
+        });
+       
+    });
+
+}

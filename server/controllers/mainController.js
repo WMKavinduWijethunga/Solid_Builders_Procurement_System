@@ -20,7 +20,7 @@ exports.viewPurchasedOrder = (req, res) => {
         if (err) throw err; // not connected
         console.log('Connected as ID' + connection.threadId);
 
-        connection.query('SELECT * FROM solidbuilders.purchaseorder', (err,rows) =>{
+        connection.query('SELECT * FROM solidbuilders.purchaseorder where approval =? ',["Approve"], (err,rows) =>{
             
             connection.release();
 
@@ -152,5 +152,13 @@ exports.staffLoginView = (req, res) => {
 exports.managementLoginView = (req, res) => {
 
     res.render('managementLogin');
+
+}
+
+//retireving to supplier login select
+exports.supplierLogin = (req, res) => {
+    
+
+    res.render('supplierLogin');
 
 }

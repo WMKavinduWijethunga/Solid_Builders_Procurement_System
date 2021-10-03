@@ -14,6 +14,8 @@ router.get('/insertQuotation/:pid',supController.ViewInsertQuotationPage);
 
 router.post('/insertQuotation',supController.createquotation);
 
+//supplier login
+router.post('/supLoginValidation' ,supController.supLoginValidation);
 
 
 module.exports = router;

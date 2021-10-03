@@ -1,37 +1,48 @@
-<div class="row">
-    <div class="col-6">
-        <h3>Add Payment Details</h3>
+
+
+<div class="container1">
+    <div class="row">
+        <div class="col-12 pb-4">
+            <h3 >ADD PAYMENT DETAILS</h3>
+        </div>
     </div>
+
+    <form action="/insertPayment" method="POST" class="needs-validation" novalidate>
+        <div class="form-group col-12">
+            <label for="inputAddress">Amount</label>
+            <input type="text" class="form-control" id="validationCustom01" name="amount" placeholder="0.00" required>
+            <div class="invalid-feedback">
+                Please enter the amount in LKR!
+            </div>
+        </div>
+        <div class="form-group col-12">
+            <label for="inputAddress">Type</label>
+            <select class="form-select" id="validationCustom04" name="type" required>
+                <option selected disabled value="">Choose...</option>
+                <option value="cheque">Cheque</option>
+                <option value="cash">Cash</option>
+            </select>
+            <div class="invalid-feedback">
+                Please select a valid type.
+            </div>
+        </div>
+        <div class="form-group col-12">
+            <label for="inputAddress">Date</label>
+            <input type="date" class="form-control" id="validationCustom02" name="date" placeholder="00/00/0000"
+                required>
+            <div class="invalid-feedback">
+                Please select a valid date!
+            </div>
+        </div>
+        <!--<input type="submit" value="Add Payment" name="btnPayment">-->
+        <button class="btn btn-success" type="submit" value="Add Payment" name="btnPayment">Add Payment</button>
+    </form>
+
+
+
 </div>
 
-<form action="/insertPayment" method="POST" class="needs-validation" novalidate>
-    <div class="form-group col-3">
-        <label for="inputAddress">Amount</label>
-        <input type="text" class="form-control" id="validationCustom01" name="amount" placeholder="0.00" required>
-        <div class="invalid-feedback">
-            Please enter the amount in LKR!
-        </div>
-    </div>
-    <div class="form-group col-3">
-        <label for="inputAddress">Type</label>
-        <select class="form-select" id="validationCustom04" name="type" required>
-            <option selected disabled value="">Choose...</option>
-            <option value="cheque">Cheque</option>
-            <option value="cash">Cash</option>
-        </select>
-        <div class="invalid-feedback">
-            Please select a valid type.
-        </div>
-    </div>
-    <div class="form-group col-3">
-        <label for="inputAddress">Date</label>
-        <input type="date" class="form-control" id="validationCustom02" name="date" placeholder="00/00/0000" required>
-        <div class="invalid-feedback">
-            Please select a valid date!
-        </div>
-    </div>
-    <input type="submit" value="Add Payment" name="btnPayment">
-</form>
+
 
 <script>
 

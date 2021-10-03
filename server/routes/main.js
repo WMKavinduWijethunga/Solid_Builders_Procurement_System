@@ -22,4 +22,8 @@ router.get('/loginStaff' , mainController.staffLoginView);
 //management login form
 router.get('/loginManagement' , mainController.managementLoginView);
 
+
+
+
+
 module.exports = router;

@@ -1,6 +1,7 @@
 const { query } = require('express');
 const mysql = require('mysql');
 
+
 //connection pool
 const pool = mysql.createPool({
     connectionLimit: 100,

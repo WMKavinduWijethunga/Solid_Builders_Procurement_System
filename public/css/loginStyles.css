@@ -1,0 +1,30 @@
+
+
+#butn{
+    margin-top: 190px;
+    padding-left: 200px;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+.btn{
+    display: block;
+    background-color: #3ab67d;
+    
+   
+   
+}
+
+#btn1{
+    width: 60%;
+    margin-bottom: 40px;
+   
+}
+
+#btn2{
+    width: 60%;
+    
+}

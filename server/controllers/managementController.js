@@ -117,13 +117,14 @@ exports.viewApprovedPOrders = (req, res) => {
 
 exports.viewMQuoatation = (req, res) => {
     
+   // let orderID = req.body.orderID;
 
     //connect to DB
     pool.getConnection((err, connection) => {
         if (err) throw err; // not connected
         console.log('Connected as ID' + connection.threadId);
 
-        connection.query('SELECT * FROM solidbuilders.quotaiondetail WHERE qID = ? ',[req.params.qID], (err,rows) =>{
+        connection.query('SELECT * FROM solidbuilders.purchaseorderitems WHERE purchOID = ?',[req.params.orderID], (err,rows) =>{
             
             connection.release();
 
@@ -164,5 +165,67 @@ exports.managementLoginValidation = (req, res) => {
         });
        
     });
+
+}
+
+exports.viewApprovedQuotation = (req, res) => {
+    
+
+    //connect to DB
+    pool.getConnection((err, connection) => {
+        if (err) throw err; // not connected
+        console.log('Connected as ID' + connection.threadId);
+
+        connection.query('SELECT * FROM solidbuilders.quotation WHERE status = ? ',["Approve"], (err,rows) =>{
+            
+            connection.release();
+
+            if(!err){ 
+                res.render('managementViewApprovedQuotations', {rows});
+            }else{
+                console.log(err);
+            }
+
+            
+        });
+       
+    });
+
+}
+
+exports.goToDeliveryPage = (req, res) => {
+
+     res.render('managementAddDeliveryDetails', {qID: req.params.qID, supplierID: req.params.supplierID});
+     
+}
+
+//add delivery
+exports.addDelivery = (req, res) => {
+
+    let qid = req.body.qid;
+    let sid = req.body.sid;
+    let location = req.body.location;
+    let number = req.body.number;
+    let date = req.body.date;
+    let status = req.body.status;
+
+    //connect to DB
+    pool.getConnection((err, connection) => {
+         if (err) throw err; // not connected
+         console.log('Connected as ID' + connection.threadId);
+
+         connection.query('INSERT INTO deliverydetails SET qID = ?, supId = ?, location	= ?, contactNo = ?, date = ?, deliveryStatus = ?',[qid,sid,location,number,date,status], (err,rows) =>{
+            
+             connection.release();
+
+             if(!err){ 
+                 res.render('webHome');
+             }else{
+                 console.log(err);
+             }
+
+         });
+       
+     }); 
 
 }

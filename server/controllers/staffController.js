@@ -302,3 +302,29 @@ exports.staffLoginValidation = (req, res) => {
     });
 
 }
+
+//read supplier list
+exports.ViewSupList = (req, res) => {
+    
+
+    //connect to DB
+    pool.getConnection((err, connection) => {
+        if (err) throw err; // not connected
+        console.log('Connected as ID' + connection.threadId);
+
+        connection.query('SELECT * FROM solidbuilders.supplier', (err,rows) =>{
+            
+            connection.release();
+
+            if(!err){ 
+                res.render('staffViewSupplier', {rows});
+            }else{
+                console.log(err);
+            }
+
+            
+        });
+       
+    });
+
+}

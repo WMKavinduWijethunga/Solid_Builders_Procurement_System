@@ -1,0 +1,83 @@
+<div class="container1">
+    <div class="row">
+        <div class="col-12 pb-4">
+            <h3>ADD DELIVERY DETAILS</h3>
+        </div>
+    </div>
+
+    <form action="/insertDelivery" method="POST" class="needs-validation" novalidate>
+        <div class="form-group col-12">
+            <label for="inputAddress">Quotation ID</label>
+            <input type="text" class="form-control" id="validationCustom01" name="qid" value="{{qID}}" readonly>
+        </div>
+        <div class="form-group col-12">
+            <label for="inputAddress">Supplier ID</label>
+            <input type="text" class="form-control" id="validationCustom01" name="sid" value="{{supplierID}}" readonly>
+        </div>
+        <div class="form-group col-12">
+            <label for="inputAddress">Location</label>
+            <input type="text" class="form-control" id="validationCustom02" name="location" placeholder="Kandy"
+                required>
+            <div class="invalid-feedback">
+                Please give a valid location!
+            </div>
+        </div>
+         <div class="form-group col-12">
+            <label for="inputAddress">Contact No</label>
+            <input type="text" class="form-control" id="validationCustom02" name="number" placeholder="07xxxxxxxx"
+                required>
+            <div class="invalid-feedback">
+                Please enter a valid number!
+            </div>
+        </div>
+        <div class="form-group col-12">
+            <label for="inputAddress">Date</label>
+            <input type="date" class="form-control" id="validationCustom02" name="date" placeholder="00/00/0000"
+                required>
+            <div class="invalid-feedback">
+                Please select a valid date!
+            </div>
+        </div>
+         <div class="form-group col-12">
+            <label for="inputAddress">Delivery Status</label>
+            <select class="form-select" id="validationCustom04" name="status" required>
+                <option selected disabled value="">Choose...</option>
+                <option value="Received">Received</option>
+                <option value="Pending">Pending</option>
+            </select>
+            <div class="invalid-feedback">
+                Please select a valid status.
+            </div>
+        </div>
+        <button class="btn btn-success" type="submit" value="Add Delivery" name="btnDelivery">Add Delivery</button>
+    </form>
+
+
+
+</div>
+
+
+
+<script>
+
+    (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+
+</script>

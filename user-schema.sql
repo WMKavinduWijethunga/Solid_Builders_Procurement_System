@@ -24,3 +24,5 @@ ALTER TABLE `deliverydetails` CHANGE `date` `date` VARCHAR(25) NOT NULL;
 ALTER TABLE `payment` CHANGE `amount` `amount` DOUBLE NOT NULL; 
 
 ALTER TABLE `payment` ADD `date` VARCHAR(25) NOT NULL AFTER `type`; 
+
+ALTER TABLE `supplier` ADD `number` INT NOT NULL AFTER `username`, ADD `email` VARCHAR(50) NOT NULL AFTER `number`, ADD `address` VARCHAR(50) NOT NULL AFTER `email`;

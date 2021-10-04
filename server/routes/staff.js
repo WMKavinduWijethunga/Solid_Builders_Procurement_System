@@ -28,5 +28,7 @@ router.post('/approvelowBu/:qid',staffController.approvelowBudQuotation);
 //staff login
 router.post('/staffLoginValidation' , staffController.staffLoginValidation);
 
+//read supllier list
+router.get('/viewSup',staffController.ViewSupList);
 
 module.exports = router; 

@@ -221,7 +221,7 @@ exports.addDelivery = (req, res) => {
         if (err) throw err; // not connected
         console.log('Connected as ID' + connection.threadId);
 
-        connection.query('INSERT INTO deliverydetails SET qID = ?, supId = ?, location	= ?, contactNo = ?, date = ?, deliveryStatus = ?', [qid, sid, location, number, date, status], (err, rows) => {
+        connection.query('INSERT INTO deliverydetails SET qID = ?, supId = ?, location	= ?, contactNo = ?, date = ?, deliveryStatus = ?', [qid, sid, location, number, date, "Pending"], (err, rows) => {
 
             connection.release();
 
@@ -234,23 +234,6 @@ exports.addDelivery = (req, res) => {
         });
 
     });
-
-         if (err) throw err; // not connected
-         console.log('Connected as ID' + connection.threadId);
-
-         connection.query('INSERT INTO deliverydetails SET qID = ?, supId = ?, location	= ?, contactNo = ?, date = ?, deliveryStatus = ?',[qid,sid,location,number,date,"Pending"], (err,rows) =>{
-            
-             connection.release();
-
-             if(!err){ 
-                 res.render('webHome');
-             }else{
-                 console.log(err);
-             }
-
-         });
-       
-     }); 
 
 
 }

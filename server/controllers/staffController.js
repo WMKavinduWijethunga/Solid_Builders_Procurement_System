@@ -170,38 +170,37 @@ exports.updateDeliveryStatus = (req, res) => {
 }
 
 //add Payment
-exports.addPaymentbyStaff = (req, res) => {
+//add Payment
 
+exports.addPaymentbyStaff = (req, res) => {
     let qid = req.body.qid;
     let amount = req.body.amount;
     let type = req.body.type;
     let date = req.body.date;
 
     //connect to DB
+
     pool.getConnection((err, connection) => {
+
         if (err) throw err; // not connected
+
         console.log('Connected as ID' + connection.threadId);
 
-
-        connection.query('INSERT INTO payment SET amount = ?, type = ?, date = ?', [amount, type, date], (err, rows) => {
-
-         connection.query('INSERT INTO payment SET amount = ?, type = ?, date = ?, qID = ?',[amount,type,date,qid], (err,rows) =>{
-            
-             connection.release();
-
+        connection.query('INSERT INTO payment SET amount = ?, type = ?, date = ?, qID = ?', [amount, type, date, qid], (err, rows) => {
 
             connection.release();
 
             if (!err) {
+
                 res.render('webHome');
+
             } else {
+
                 console.log(err);
+
             }
-
         });
-
     });
-
 }
 
 //read all supplier quotation

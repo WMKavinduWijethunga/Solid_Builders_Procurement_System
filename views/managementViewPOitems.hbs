@@ -1,3 +1,55 @@
+<div class="container1">
+    <div class="row">
+        {{#each row2}}
+        <div class="col-12 pb-4">
+            <h3>Approve Purchase Order No {{this.orderID}}</h3>
+        </div>
+        {{/each}}
+    </div>
+    <form action="/sendManageApproval" method="POST" class="needs-validation" novalidate>
+        {{#each row2}}
+        <div class="form-group col-12">
+            <label for="inputAddress">Requisition Number</label>
+            <input type="text" class="form-control" name="orderID" value="{{this.orderID}}" readonly>
+        </div>
+        <div class="form-group col-12">
+            <label for="inputAddress">Site Manager</label>
+            <input type="text" class="form-control" value="{{this.siteManName}}" readonly>
+        </div>
+        <div class="form-group col-12">
+            <label for="inputAddress">Submitted Date</label>
+            <input type="text" class="form-control" value="{{this.orderDate}}" placeholder="Kandy" readonly>
+
+        </div>
+        <div class="form-group col-12">
+            <label for="inputAddress">Site Name</label>
+            <input type="text" class="form-control" value="{{this.siteName}}" placeholder="07xxxxxxxx" readonly>
+
+        </div>
+        <div class="form-group col-12">
+            <label for="inputAddress">Total Amount</label>
+            <input type="text" class="form-control" value="{{this.total}}" placeholder="07xxxxxxxx" readonly>
+
+        </div>
+        {{/each}}
+        {{#each row3}}
+        <div class="form-group col-12">
+            <label for="inputAddress">Budget</label>
+            <input type="text" class="form-control set-input-margin" value="{{this.budget}}" placeholder="07xxxxxxxx"
+                readonly>
+
+            {{/each}}
+
+            <input type="submit" class="btn btn-primary set-input-margin" value="Approve" name="btntoManage">
+            <input type="submit" class="btn btn-primary set-input-margin" value="Reject" name="btntoManage">
+    </form>
+</div>
+
+
+
+
+<!--
+
 <form action="/sendManageApproval" method="POST">
     {{#each row2}}
     <div class="form-group col-3">
@@ -28,5 +80,7 @@
     </div>
     {{/each}}
     <input type="submit" value="Approve" name="btntoManage">
-    <input type="submit" value="Reject" name="btntoManage"> 
+    <input type="submit" value="Reject" name="btntoManage">
 </form>
+
+-->

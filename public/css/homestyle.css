@@ -6,9 +6,7 @@
 .home-heading-container {
   padding-top: 30px;
 }
-.home-heading :first-child {
-  color: white;
-}
+
 .card-container {
   width: 100%;
   padding: 30px;
@@ -54,4 +52,8 @@
 }
 .btn-set-margin-top{
   margin-top: 30px;
+}
+.background-change{
+  background-color: #348a27;
+  border-style: none;
 }

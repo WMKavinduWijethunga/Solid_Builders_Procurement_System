@@ -1,40 +1,43 @@
 <div class="row">
-    <div class="col-6"><h3>Suppliers List</h3></div>
+    <div class="col-6">
+        <h3>Suppliers List</h3>
+    </div>
 </div>
 
 <div class="d-flex">
-<div class="dash-background">
+    <div class="dash-background">
         <h3>DashBoard</h3>
         <div class="btn-groups">
             <a href="/reqManagement" type="button" class="btn btn-primary">View Orders</a>
             <a href="/readQuoto" type="button" class="btn btn-primary">View Quotation</a>
             <a href="/viewSup" type="button" class="btn btn-primary">View Suppliers</a>
+            <a href="/viewNCompletedDeliveries" type="button" class="btn btn-primary">Incompleted Delivery</a>
         </div>
-</div>
+    </div>
 
-<div class="set-tb-width">
-<table class="table">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Supplier Name</th>
-            <th scope="col">Contact No</th>
-            <th scope="col">Email</th>
-            <th scope="col">Address</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each rows}}
-        <tr>
-            <th scope="row">{{this.supplierID}}</th>
-            <td>{{this.name}}</td>
-            <td>{{this.number}}</td>
-            <td>{{this.email}}</td>
-            <td>{{this.address}}</td>
-        </tr>
-        {{/each}}
+    <div class="set-tb-width">
+        <table class="table table-striped table-light table-hover">
+            <thead class="thead-dark">
+                <tr style="color:#3ab67d">
+                    <th scope="col">#</th>
+                    <th scope="col">Supplier Name</th>
+                    <th scope="col">Contact No</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each rows}}
+                <tr>
+                    <th scope="row">{{this.supplierID}}</th>
+                    <td>{{this.name}}</td>
+                    <td>{{this.number}}</td>
+                    <td>{{this.email}}</td>
+                    <td>{{this.address}}</td>
+                </tr>
+                {{/each}}
 
-    </tbody>
-</table>
-</div>
+            </tbody>
+        </table>
+    </div>
 </div>

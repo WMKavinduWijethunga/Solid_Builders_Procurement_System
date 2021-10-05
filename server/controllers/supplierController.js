@@ -102,8 +102,21 @@ exports.createquotation = (req, res) => {
                     });
 
                 }
-                connection.release();
-                res.redirect('/');
+                connection.query('SELECT * FROM solidbuilders.purchaseorder where approval =? ', ["Approve"], (err, rows) => {
+
+                    connection.release();
+
+                    if (!err) {
+
+                        res.render('supplierViewPurchasedOrder', { rows, supID: req.params.supID });
+                    } else {
+                        console.log(err);
+                    }
+
+
+                });
+
+
 
             } else {
                 console.log(err);
@@ -182,7 +195,64 @@ exports.ViewSupplierAprrovedOrder = (req, res) => {
             connection.release();
 
             if (!err) {
+                for (let i = 0; i < rows.length; i++) {
+                    rows[i].supID = supID;
+                }
+
                 res.render('supplierViewApprovedQuoto', { rows, supID: supID });
+            } else {
+                console.log(err);
+            }
+
+        });
+
+    });
+
+}
+
+//View Relevent supliier approved Order Items detail
+exports.ViewSupplierAprrovedOrderItems = (req, res) => {
+
+    let supID = req.params.supID;
+    //connect to DB
+    pool.getConnection((err, connection) => {
+        if (err) throw err; // not connected
+        console.log('Connected as ID' + connection.threadId);
+
+        connection.query('SELECT * FROM solidbuilders.quotaiondetail WHERE qID = ?', [req.params.qID], (err, rows) => {
+
+            connection.release();
+
+            if (!err) {
+                res.render('supApprovedQutoDetails', { rows, qID: req.params.qID, supID: supID });
+            } else {
+                console.log(err);
+            }
+
+        });
+
+    });
+
+}
+
+
+
+
+//View Relevent supliier approved Order delivery detail
+exports.viewApprovedQuotoDeleivery = (req, res) => {
+
+    let supID = req.params.supID;
+    //connect to DB
+    pool.getConnection((err, connection) => {
+        if (err) throw err; // not connected
+        console.log('Connected as ID' + connection.threadId);
+
+        connection.query('SELECT * FROM solidbuilders.deliverydetails WHERE qID = ?', [req.params.qID], (err, rows) => {
+
+            connection.release();
+
+            if (!err) {
+                res.render('supplierViewApprDelivery', { rows, qID: req.params.qID, supID: supID });
             } else {
                 console.log(err);
             }

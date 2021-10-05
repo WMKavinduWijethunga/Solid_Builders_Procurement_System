@@ -1,28 +1,42 @@
 <div class="container-log">
-          
-     <img src="../resources/login2.png" class="card-img-center" alt="..."
-                            style="width: 250px; height: 180px;">
-        <h5 id="staff2">MANAGEMENT LOGIN</h5>
 
-<form method="POST" action="/managementLoginValidation" class="needs-validation" novalidate>
-    <div class="col-12">
-        <!--<label for="exampleInputEmail1" class="form-label">Username</label>-->
-        <input type="text" class="form-control" id="validationCustom01" name="manUsername" aria-describedby="emailHelp" required placeholder="Username">
-        <div class="invalid-feedback" >
-            Please enter your username
+    <img src="../resources/login2.png" class="card-img-center" alt="..." style="width: 250px; height: 180px;">
+    <h5 id="staff2">MANAGEMENT LOGIN</h5>
+
+    {{#if error}}
+    <div class="alert alert-danger d-flex align-items-center" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+            <use xlink:href="#info-fill" />
+        </svg>
+        <div>
+            {{error}}
         </div>
     </div>
-    <div class="col-12">
-        <!--<label for="exampleInputPassword1" class="form-label">Password</label>-->
-        <input type="password" class="form-control" id="validationCustom02" name="manPassword" aria-describedby="emailHelp" required placeholder="Password">
-        <div class="invalid-feedback">
-            Please enter your password
+    {{/if}}
+
+
+    <form method="POST" action="/managementLoginValidation" class="needs-validation" novalidate>
+        <div class="col-12">
+            <!--<label for="exampleInputEmail1" class="form-label">Username</label>-->
+            <input type="text" class="form-control" id="validationCustom01" name="manUsername"
+                aria-describedby="emailHelp" required placeholder="Username">
+            <div class="invalid-feedback">
+                Please enter your username
+            </div>
         </div>
-    </div>
+        <div class="col-12">
+            <!--<label for="exampleInputPassword1" class="form-label">Password</label>-->
+            <input type="password" class="form-control" id="validationCustom02" name="manPassword"
+                aria-describedby="emailHelp" required placeholder="Password">
+            <div class="invalid-feedback">
+                Please enter your password
+            </div>
+        </div>
 
 
-    <button style="background-color: #3ab67d; margin-top: 50px; margin-left:65px; width: 120px; height: 35px;" type="submit" class="btn ">Login</button>
-</form>
+        <button style="background-color: #3ab67d; margin-top: 50px; margin-left:65px; width: 120px; height: 35px;"
+            type="submit" class="btn ">Login</button>
+    </form>
 
 </div>
 

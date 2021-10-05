@@ -1,15 +1,25 @@
-
 <div class="container-log">
-          
-     <img src="../resources/login2.png" class="card-img-center" alt="..."
-                            style="width: 250px; height: 180px;">
-        <h5 id="staff">STAFF LOGIN</h5>
-       
+
+    <img src="../resources/login2.png" class="card-img-center" alt="..." style="width: 250px; height: 180px;">
+    <h5 id="staff">STAFF LOGIN</h5>
+
+    {{#if error}}
+    <div class="alert alert-danger d-flex align-items-center" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+            <use xlink:href="#info-fill" />
+        </svg>
+        <div>
+            {{error}}
+        </div>
+    </div>
+    {{/if}}
+
+
 
     <form method="POST" action="/staffLoginValidation" class="needs-validation" novalidate>
         <div class="col-12">
-           <!-- <label id="lb1" for="exampleInputEmail1" class="form-label" >Username</label>-->
-            <input  type="text" class="form-control"  id="validationCustom01"  name="stUsername" 
+            <!-- <label id="lb1" for="exampleInputEmail1" class="form-label" >Username</label>-->
+            <input type="text" class="form-control" id="validationCustom01" name="stUsername"
                 aria-describedby="emailHelp" required placeholder="Username">
             <div class="invalid-feedback">
                 Please enter your username
@@ -25,7 +35,8 @@
         </div>
 
 
-        <button style="background-color: #3ab67d; margin-top: 50px; margin-left:65px; width: 120px; height: 35px;" type="submit" class="btn ">Login</button>
+        <button style="background-color: #3ab67d; margin-top: 50px; margin-left:65px; width: 120px; height: 35px;"
+            type="submit" class="btn ">Login</button>
     </form>
 
 </div>

@@ -49,7 +49,7 @@ exports.viewPOManagement = (req, res) => {
         if (err) throw err; // not connected
         console.log('Connected as ID' + connection.threadId);
 
-        connection.query('SELECT * FROM solidbuilders.purchaseorder WHERE approval = ? ', ["Management"], (err, rows) => {
+        connection.query('SELECT * FROM solidbuilders.purchaseorder WHERE approval = ? ', ["Managment"], (err, rows) => {
 
             connection.release();
 
@@ -120,7 +120,7 @@ exports.viewNotCompletedDeliveries = (req, res) => {
         if (err) throw err; // not connected
         console.log('Connected as ID' + connection.threadId);
 
-        connection.query('SELECT * FROM solidbuilders.deliverydetails where deliveryStatus = ?', ["Not Completed"], (err, rows) => {
+        connection.query('SELECT * FROM solidbuilders.deliverydetails where deliveryStatus = ?', ["Pending"], (err, rows) => {
 
             connection.release();
 

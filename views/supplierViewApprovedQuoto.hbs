@@ -1,9 +1,10 @@
-<div>
-    <h3>PURCHASE ORDERS</h3>
+<div class="row">
+    <div class="col-6">
+        <h3>Approved Quotations</h3>
+    </div>
 </div>
 
 <div class="d-flex">
-
     <div class="dash-background">
         <h3>DashBoard</h3>
         <div class="btn-groups">
@@ -12,40 +13,41 @@
         </div>
     </div>
 
+
     <div class="set-tb-width">
         <table class="table table-striped table-light table-hover">
             <thead class="thead-dark">
                 <tr style="color:#3ab67d">
                     <th scope="col">#</th>
-                    <th scope="col">Order Date</th>
-                    <th scope="col">To be delivered by</th>
-                    <th scope="col">Manager Name</th>
-                    <th scope="col">Site Name</th>
-                    <th scope="col">Comments</th>
-
+                    <th scope="col">Order ID</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Date</th>
                     <th scope="col" class="text-end">Action</th>
                 </tr>
             </thead>
             <tbody>
-                {{#each rows }}
+                {{#each rows}}
                 <tr>
-                    <th scope="row">{{this.orderID }}</th>
-                    <td>{{this.orderDate}}</td>
-                    <td>{{this.deliveryDate}}</td>
-                    <td>{{this.siteManName}}</td>
-                    <td>{{this.siteName}}</td>
-                    <td>{{this.comment}}</td>
-
+                    <th scope="row">{{this.qID }}</th>
+                    <td>{{this.orderID}}</td>
+                    <td>{{this.status}}</td>
+                    <td>{{this.quotaionDate}}</td>
                     <td class="text-end">
-                        <a style="background-color: #bdfbb4;" href="/sup_view_p_items/{{this.orderID}}/{{this.supID}}"
-                            type="button" class="btn  btn-small"><i class="bi bi-eye"></i>View</a>
+                        <div class="d-flex justify-content-end">
+                            <div class="set-btn-margin">
+                                <a href="/viewSupQutoItems/{{this.qID}}" type="button" class="btn btn-dark btn-small"><i
+                                        class="bi bi-eye"></i>View</a>
+                            </div>
+                        </div>
 
                     </td>
+
                 </tr>
                 {{/each}}
 
             </tbody>
         </table>
+
     </div>
 
 </div>

@@ -1,65 +1,81 @@
-{{clearQuantity}}
-{{clearPrice}}
+<div class="d-flex">
 
-<form method="POST" action="/insertQuotation">
-  <table class="table col-6">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">Item Name</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Price</th>
-
-      </tr>
-    </thead>
-    <tbody>
-
-      {{#each rows}}
-      <tr>
-
-        <td>
-          <input name="itemName" type="text" class="form-control" value="{{this.itemName}}" />
-        </td>
-
-        <td>
-          <input name="qty" type="text" class="form-control" value="{{this.quantity}}" />
-        </td>
-
-        <td>
-          <input type="text" name="price" class="form-control" value="{{this.price}}" />
-        </td>
-      </tr>
-      {{/each}}
-
-    </tbody>
-  </table>
-
-  <div class="form-group col-3">
-    <label for="inputAddress">Date</label>
-    <input type="date" class="form-control" id="reqDate" name="quotaionDate" required>
-    <div class="invalid-feedback">
-      Please select a valid date!
+  <div class="dash-background">
+    <h3>DashBoard</h3>
+    <div class="btn-groups">
+      <a href="/supplierpage/{{supID}}" type="button" class="btn btn-primary">View Orders</a>
+      <a href="/supviewapprove/{{supID}}" type="button" class="btn btn-primary">View Approved</a>
     </div>
   </div>
 
-  <div class="form-group col-3">
-    <label for="inputAddress">Order ID</label>
-    <input type="text" value="{{q_pid}}" class="form-control" id="purID" name="orderID" required>
-    <div class="invalid-feedback">
-      Please select a valid date!
-    </div>
-  </div>
+  <div class="set-tb-width">
+    <form method="POST" action="/insertQuotation">
+      <table class="table col-6">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Item Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
 
-  <div class="form-group col-3">
-    <label for="inputAddress">Supplier ID</label>
-    <input type="text" class="form-control" id="supID" name="supplierID" required>
-    <div class="invalid-feedback">
-      Please select a valid date!
-    </div>
-  </div>
+          </tr>
+        </thead>
+        <tbody>
 
-  <div class="col-3">
-    
-  </div>
+          {{#each rows}}
+          <tr>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+            <td>
+              <input name="itemName" type="text" class="input-border-romv" value="{{this.itemName}}"
+                style="border: none;" readonly />
+            </td>
+
+            <td>
+              <input name="qty" type="text" class="form-control" value="{{this.quantity}}" />
+            </td>
+
+            <td>
+              <input type="text" name="price" class="form-control" value="{{this.price}}" />
+            </td>
+          </tr>
+          {{/each}}
+
+        </tbody>
+      </table>
+
+      <div>
+        <div class="form-group col-3">
+          <label for="inputAddress">Date</label>
+          <input type="date" class="form-control" id="reqDate" name="quotaionDate" required>
+          <div class="invalid-feedback">
+            Please select a valid date!
+          </div>
+        </div>
+
+        <div class="form-group col-3">
+          <label for="inputAddress">Order ID</label>
+          <input type="text" value="{{q_pid}}" class="form-control" id="purID" name="orderID" required>
+          <div class="invalid-feedback">
+            Please select a valid date!
+          </div>
+        </div>
+
+        <div class="form-group col-3">
+          <label for="inputAddress">Supplier ID</label>
+          <input type="text" class="form-control" value="{{supID}}" id="supID" name="supplierID" required>
+          <div class="invalid-feedback">
+            Please select a valid date!
+          </div>
+        </div>
+
+        <div class="col-3">
+
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+      </div>
+
+    </form>
+
+  </div>
+</div>

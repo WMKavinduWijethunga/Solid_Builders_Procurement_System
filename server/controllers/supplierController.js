@@ -6,7 +6,7 @@ const pool = mysql.createPool({
     connectionLimit: 100,
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
-    password: process.env.DB_PASS, 
+    password: process.env.DB_PASS,
     database: process.env.DB_NAME,
     port: 3307
 
@@ -17,102 +17,101 @@ const pool = mysql.createPool({
 exports.ViewSupPurchItemPage = (req, res) => {
 
     //connect to DB
-    pool.getConnection((err, connection) => { 
+    pool.getConnection((err, connection) => {
         if (err) throw err; // not connected
         console.log('Connected as ID' + connection.threadId);
 
-        connection.query('SELECT * FROM solidbuilders.purchaseorderitems WHERE purchOID = ?',[req.params.orderID], (err,rows) =>{
-            
+        connection.query('SELECT * FROM solidbuilders.purchaseorderitems WHERE purchOID = ?', [req.params.orderID], (err, rows) => {
+
             connection.release();
 
-            if(!err){ 
-                res.render('SupplierViewPurchaseItems', {rows,pid:req.params.orderID});
-            }else{
+            if (!err) {
+                res.render('SupplierViewPurchaseItems', { rows, oid: req.params.orderID, supID: req.params.supID });
+            } else {
                 console.log(err);
             }
 
         });
-       
+
     });
 
 }
 
 exports.ViewInsertQuotationPage = (req, res) => {
 
-    let num = 1;
     //connect to DB
     pool.getConnection((err, connection) => {
         if (err) throw err; // not connected
         console.log('Connected as ID' + connection.threadId);
 
-        connection.query('SELECT * FROM solidbuilders.purchaseorderitems WHERE purchOID = ?',[req.params.pid], (err,rows) =>{
-            
+        connection.query('SELECT * FROM solidbuilders.purchaseorderitems WHERE purchOID = ?', [req.params.oid], (err, rows) => {
+
             connection.release();
 
-            if(!err){ 
-                res.render('supplierQuotationInsert', {rows,q_pid:req.params.pid,num:num});
-            }else{
+            if (!err) {
+                res.render('supplierQuotationInsert', { rows, q_pid: req.params.oid, supID: req.params.supID });
+            } else {
                 console.log(err);
             }
 
         });
-       
+
     });
-    
+
 }
 
 //Insert quotation details 
 exports.createquotation = (req, res) => {
 
     let status = "Pending";
-    
-    const array=
-    {
-        qty : qty,
-        price: price,
-        itemName:itemName
-    }
-     = req.body;
-    
 
-    const{quotaionDate,orderID,supplierID} = req.body;
+    const array =
+        {
+            qty: qty,
+            price: price,
+            itemName: itemName
+        }
+        = req.body;
+
+
+    const { quotaionDate, orderID, supplierID } = req.body;
 
     //connect to DB
     pool.getConnection((err, connection) => {
         if (err) throw err; // not connected
         console.log('Connected as ID' + connection.threadId);
 
-        connection.query('INSERT INTO solidbuilders.quotation SET supplierID = ?, orderID = ?, status = ?, quotaionDate = ?',[supplierID,orderID,status,quotaionDate], (err,result,rows) =>{
-            
-            
+        connection.query('INSERT INTO solidbuilders.quotation SET supplierID = ?, orderID = ?, status = ?, quotaionDate = ?', [supplierID, orderID, status, quotaionDate], (err, result, rows) => {
+
+
             let quotID = result.insertId;
 
-            if(!err){ 
-                
+            if (!err) {
+
                 for (let i = 0; i < itemName.length; i++) {
-                    
-                    connection.query('INSERT INTO solidbuilders.quotaiondetail SET qID = ?, itemName = ?, quantity = ?, price = ?',[quotID,itemName[i],qty[i],price[i]], (err,result,rows) =>{
-            
-                        if(!err){ 
-                            
-                        }else{
+
+                    connection.query('INSERT INTO solidbuilders.quotaiondetail SET qID = ?, itemName = ?, quantity = ?, price = ?', [quotID, itemName[i], qty[i], price[i]], (err, result, rows) => {
+
+                        if (!err) {
+
+                        } else {
                             console.log(err);
-                            
+
                         }
-            
+
                     });
-                   
+
                 }
                 connection.release();
                 res.redirect('/');
-               
-            }else{
+
+            } else {
                 console.log(err);
-                
+
             }
 
         });
-       
+
     });
 
 }
@@ -128,18 +127,68 @@ exports.supLoginValidation = (req, res) => {
         if (err) throw err; // not connected
         console.log('Connected as ID' + connection.threadId);
 
-        connection.query('SELECT * FROM solidbuilders.supplier WHERE username = ? AND password = ?',[supUsername,supPassword], (err,rowSup) =>{
-            
-            connection.release();
+        connection.query('SELECT * FROM solidbuilders.supplier WHERE username = ? AND password = ?', [supUsername, supPassword], (err, rowSup) => {
 
-            if(!err){ 
-                res.render('staffDashboard', {rowSup});
-            }else{
+            if (!err) {
+                if (rowSup.length > 0) {
+
+                    let supID = rowSup[0].supplierID;
+
+                    connection.query('SELECT * FROM solidbuilders.purchaseorder where approval =? ', ["Approve"], (err, rows) => {
+
+                        connection.release();
+
+                        if (!err) {
+
+                            for (let i = 0; i < rows.length; i++) {
+                                rows[i].supID = supID;
+                            }
+
+                            console.log(rows);
+
+                            res.render('supplierViewPurchasedOrder', { rows, supID: supID });
+                        } else {
+                            console.log(err);
+                        }
+
+
+                    });
+
+                } else {
+                    res.render('supplierLogin', { error: "Incorrect Username and/or Password!" });
+                }
+
+            } else {
                 console.log(err);
             }
 
         });
-       
+
+    });
+
+}
+
+//View Relevent supliier Order
+exports.ViewSupplierAprrovedOrder = (req, res) => {
+
+    let supID = req.params.supID
+    //connect to DB
+    pool.getConnection((err, connection) => {
+        if (err) throw err; // not connected
+        console.log('Connected as ID' + connection.threadId);
+
+        connection.query('SELECT * FROM solidbuilders.quotation WHERE supplierID = ? And status =?', [supID, "Approve"], (err, rows) => {
+
+            connection.release();
+
+            if (!err) {
+                res.render('supplierViewApprovedQuoto', { rows, supID: supID });
+            } else {
+                console.log(err);
+            }
+
+        });
+
     });
 
 }

@@ -214,10 +214,10 @@ exports.addDelivery = (req, res) => {
     let location = req.body.location;
     let number = req.body.number;
     let date = req.body.date;
-    let status = req.body.status;
 
     //connect to DB
     pool.getConnection((err, connection) => {
+
         if (err) throw err; // not connected
         console.log('Connected as ID' + connection.threadId);
 
@@ -234,5 +234,23 @@ exports.addDelivery = (req, res) => {
         });
 
     });
+
+         if (err) throw err; // not connected
+         console.log('Connected as ID' + connection.threadId);
+
+         connection.query('INSERT INTO deliverydetails SET qID = ?, supId = ?, location	= ?, contactNo = ?, date = ?, deliveryStatus = ?',[qid,sid,location,number,date,"Pending"], (err,rows) =>{
+            
+             connection.release();
+
+             if(!err){ 
+                 res.render('webHome');
+             }else{
+                 console.log(err);
+             }
+
+         });
+       
+     }); 
+
 
 }

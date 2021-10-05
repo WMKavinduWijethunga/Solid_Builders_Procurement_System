@@ -30,7 +30,7 @@
   padding: 30px;
   background-color: #bdfbb4;
   margin-right: 20px;
-  width: 20%;
+  width: 22%;
 }
 .btn-groups a {
   background-color: #188d62; /* Green background */
@@ -47,8 +47,11 @@
   margin-right: auto;
 }
 .set-tb-width {
-  width: 80%;
+  width: 78%;
 }
 .set-btn-margin {
   margin-right: 20px;
+}
+.btn-set-margin-top{
+  margin-top: 30px;
 }

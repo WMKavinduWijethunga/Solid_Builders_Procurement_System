@@ -3,17 +3,30 @@
     <h3>Please enter your login credentials</h3>
 </div>
 
+{{#if error}}
+<div class="alert alert-danger d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+        <use xlink:href="#info-fill" />
+    </svg>
+    <div>
+        {{error}}
+    </div>
+</div>
+{{/if}}
+
 <form method="POST" action="/supLoginValidation" class="needs-validation" novalidate>
     <div class="col-3">
         <label for="exampleInputEmail1" class="form-label">Username</label>
-        <input type="text" class="form-control" id="validationCustom01" name="supUsername" aria-describedby="emailHelp" required>
+        <input type="text" class="form-control" id="validationCustom01" name="supUsername" aria-describedby="emailHelp"
+            required>
         <div class="invalid-feedback">
             Please enter your username
         </div>
     </div>
     <div class="col-3">
         <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" class="form-control" id="validationCustom02" name="supPassword" aria-describedby="emailHelp" required>
+        <input type="password" class="form-control" id="validationCustom02" name="supPassword"
+            aria-describedby="emailHelp" required>
         <div class="invalid-feedback">
             Please enter your password
         </div>

@@ -5,26 +5,24 @@
     padding-left: 200px;
 }
 
-a{
-    color: white;
-    text-decoration: none;
-}
 
-.btn{
-    display: block;
-    background-color: #3ab67d;
-    
-   
-   
-}
+
 
 #btn1{
-    width: 60%;
-    margin-bottom: 40px;
-   
+    display: block;
+    background-color: #3ab67d;
+    margin-bottom: 100px;
+    width: 56%;
+    
 }
 
 #btn2{
-    width: 60%;
+    display: block;
+    background-color: #3ab67d;
+    margin-bottom: 100px;
+    width: 56%;
     
 }
+
+
+

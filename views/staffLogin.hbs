@@ -1,29 +1,31 @@
+
 <div class="container-log">
-<div class="col-6">
-        <h3>STAFF LOGIN</h3>
-        <h6>Please enter your login credentials</h6>
-    </div>
+          
+     <img src="../resources/login2.png" class="card-img-center" alt="..."
+                            style="width: 250px; height: 180px;">
+        <h5 id="staff">STAFF LOGIN</h5>
+       
 
     <form method="POST" action="/staffLoginValidation" class="needs-validation" novalidate>
-        <div class="col-8">
-            <label for="exampleInputEmail1" class="form-label">Username</label>
-            <input type="text" class="form-control" id="validationCustom01" name="stUsername"
-                aria-describedby="emailHelp" required>
+        <div class="col-12">
+           <!-- <label id="lb1" for="exampleInputEmail1" class="form-label" >Username</label>-->
+            <input  type="text" class="form-control"  id="validationCustom01"  name="stUsername" 
+                aria-describedby="emailHelp" required placeholder="Username">
             <div class="invalid-feedback">
                 Please enter your username
             </div>
         </div>
-        <div class="col-8">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
+        <div class="col-12">
+            <!--<label id="lb2" for="exampleInputPassword1" class="form-label">Password</label>-->
             <input type="password" class="form-control" id="validationCustom02" name="stPassword"
-                aria-describedby="emailHelp" required>
+                aria-describedby="emailHelp" required placeholder="Password">
             <div class="invalid-feedback">
                 Please enter your password
             </div>
         </div>
 
 
-        <button style="background-color: #3ab67d; margin-top  : 30px;" type="submit" class="btn ">Login</button>
+        <button style="background-color: #3ab67d; margin-top: 50px; margin-left:65px; width: 120px; height: 35px;" type="submit" class="btn ">Login</button>
     </form>
 
 </div>

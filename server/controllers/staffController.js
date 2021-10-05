@@ -76,19 +76,19 @@ exports.updateStaffApproval = (req, res) => {
         if (err) throw err; // not connected
         console.log('Connected as ID' + connection.threadId);
 
-        connection.query('UPDATE purchaseorder SET approval = ? where orderID = ?',[btnapprove,orderID], (err,rows) =>{
-            
+        connection.query('UPDATE purchaseorder SET approval = ? where orderID = ?', [btnapprove, orderID], (err, rows) => {
+
             connection.release();
 
-            if(!err){ 
+            if (!err) {
                 res.render('requisitionManagementOrder');
-            }else{
+            } else {
                 console.log(err);
             }
 
         });
-       
-    }); 
+
+    });
 
 }
 
@@ -119,7 +119,7 @@ exports.compareView = (req, res) => {
 
                             if (!err) {
 
-                                res.render('staffCompareView', { rowQuoatationItems: rowQuoatationItems, rowQuoatation: rowQuoatation, rowPOItems: rowPOItems});
+                                res.render('staffCompareView', { rowQuoatationItems: rowQuoatationItems, rowQuoatation: rowQuoatation, rowPOItems: rowPOItems });
 
                             } else {
                                 console.log(err);
@@ -153,19 +153,19 @@ exports.updateDeliveryStatus = (req, res) => {
         if (err) throw err; // not connected
         console.log('Connected as ID' + connection.threadId);
 
-        connection.query('UPDATE deliverydetails SET deliveryStatus = ? where qID = ?',[btntoDeliverysts,req.params.qID], (err,rows) =>{
-            
+        connection.query('UPDATE deliverydetails SET deliveryStatus = ? where qID = ?', [btntoDeliverysts, req.params.qID], (err, rows) => {
+
             connection.release();
 
-            if(!err){ 
+            if (!err) {
                 res.render('webHome');
-            }else{
+            } else {
                 console.log(err);
             }
 
         });
-       
-    }); 
+
+    });
 
 }
 
@@ -179,47 +179,53 @@ exports.addPaymentbyStaff = (req, res) => {
 
     //connect to DB
     pool.getConnection((err, connection) => {
-         if (err) throw err; // not connected
-         console.log('Connected as ID' + connection.threadId);
+        if (err) throw err; // not connected
+        console.log('Connected as ID' + connection.threadId);
+
+
+        connection.query('INSERT INTO payment SET amount = ?, type = ?, date = ?', [amount, type, date], (err, rows) => {
 
          connection.query('INSERT INTO payment SET amount = ?, type = ?, date = ?, qID = ?',[amount,type,date,qid], (err,rows) =>{
             
              connection.release();
 
-             if(!err){ 
-                 res.render('webHome');
-             }else{
-                 console.log(err);
-             }
 
-         });
-       
-     }); 
+            connection.release();
+
+            if (!err) {
+                res.render('webHome');
+            } else {
+                console.log(err);
+            }
+
+        });
+
+    });
 
 }
 
 //read all supplier quotation
 exports.ViewSupAllQuoto = (req, res) => {
-    
+
 
     //connect to DB
     pool.getConnection((err, connection) => {
         if (err) throw err; // not connected
         console.log('Connected as ID' + connection.threadId);
 
-        connection.query('SELECT * FROM solidbuilders.quotation', (err,rows) =>{
-            
+        connection.query('SELECT * FROM solidbuilders.quotation', (err, rows) => {
+
             connection.release();
 
-            if(!err){ 
-                res.render('staffViewSupQuotation', {rows});
-            }else{
+            if (!err) {
+                res.render('staffViewSupQuotation', { rows });
+            } else {
                 console.log(err);
             }
 
-            
+
         });
-       
+
     });
 
 }
@@ -232,20 +238,20 @@ exports.ViewSupQuotoItems = (req, res) => {
         if (err) throw err; // not connected
         console.log('Connected as ID' + connection.threadId);
 
-        connection.query('SELECT * FROM solidbuilders.quotaiondetail WHERE qID = ?',[req.params.qid], (err,rows) =>{
-            
+        connection.query('SELECT * FROM solidbuilders.quotaiondetail WHERE qID = ?', [req.params.qid], (err, rows) => {
+
             connection.release();
 
-            if(!err){ 
-                res.render('ViewSupQutoDetails', {rows,qid:req.params.qid});
-            }else{
+            if (!err) {
+                res.render('ViewSupQutoDetails', { rows, qid: req.params.qid });
+            } else {
                 console.log(err);
             }
 
         });
-       
+
     });
-    
+
 }
 
 //approve low budget quotation
@@ -257,19 +263,19 @@ exports.approvelowBudQuotation = (req, res) => {
         if (err) throw err; // not connected
         console.log('Connected as ID' + connection.threadId);
 
-        connection.query('UPDATE solidbuilders.quotation SET status = ? where qID = ?',["Approve",req.params.qid], (err,rows) =>{
-            
+        connection.query('UPDATE solidbuilders.quotation SET status = ? where qID = ?', ["Approve", req.params.qid], (err, rows) => {
+
             connection.release();
 
-            if(!err){ 
-                res.redirect('/');
-            }else{
+            if (!err) {
+                res.render('staffDashboard');
+            } else {
                 console.log(err);
             }
 
         });
-       
-    }); 
+
+    });
 
 }
 
@@ -284,48 +290,48 @@ exports.staffLoginValidation = (req, res) => {
         if (err) throw err; // not connected
         console.log('Connected as ID' + connection.threadId);
 
-        connection.query('SELECT * FROM solidbuilders.staff WHERE usename = ? AND password = ?',[stUsername,stPassword], (err,rowStaff) =>{
-            
+        connection.query('SELECT * FROM solidbuilders.staff WHERE usename = ? AND password = ?', [stUsername, stPassword], (err, rowStaff) => {
+
             connection.release();
 
-            if(!err){ 
-                if(rowStaff.length==0){
-                    res.render('webHome');
-                }else{
-                    res.render('staffDashboard', {rowStaff});
+            if (!err) {
+                if (rowStaff.length > 0) {
+                    res.render('staffDashboard', { rowStaff });
+                } else {
+                    res.render('staffLogin', { error: "Incorrect Username and/or Password!" });
                 }
-            }else{
+            } else {
                 console.log(err);
             }
 
         });
-       
+
     });
 
 }
 
 //read supplier list
 exports.ViewSupList = (req, res) => {
-    
+
 
     //connect to DB
     pool.getConnection((err, connection) => {
         if (err) throw err; // not connected
         console.log('Connected as ID' + connection.threadId);
 
-        connection.query('SELECT * FROM solidbuilders.supplier', (err,rows) =>{
-            
+        connection.query('SELECT * FROM solidbuilders.supplier', (err, rows) => {
+
             connection.release();
 
-            if(!err){ 
-                res.render('staffViewSupplier', {rows});
-            }else{
+            if (!err) {
+                res.render('staffViewSupplier', { rows });
+            } else {
                 console.log(err);
             }
 
-            
+
         });
-       
+
     });
 
 }

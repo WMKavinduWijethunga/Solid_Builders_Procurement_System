@@ -1,16 +1,15 @@
 <div class="row">
-    <div class="col-6">
-        <h3>{{qid}}</h3>
+    <div class="col-12">
+        <h3>Approved Quotations Details (Quotation Number {{qID}})</h3>
     </div>
 </div>
+
 <div class="d-flex">
     <div class="dash-background">
         <h3>DashBoard</h3>
         <div class="btn-groups">
-            <a href="/reqManagement" type="button" class="btn btn-primary">View Orders</a>
-            <a href="/readQuoto" type="button" class="btn btn-primary">View Quotation</a>
-            <a href="/viewSup" type="button" class="btn btn-primary">View Suppliers</a>
-            <a href="/viewNCompletedDeliveries" type="button" class="btn btn-primary">Incompleted Delivery</a>
+            <a href="/supplierpage/{{supID}}" type="button" class="btn btn-primary">View Orders</a>
+            <a href="/supviewapprove/{{supID}}" type="button" class="btn btn-primary">View Approved</a>
         </div>
     </div>
 
@@ -36,4 +35,5 @@
             </tbody>
         </table>
     </div>
+
 </div>

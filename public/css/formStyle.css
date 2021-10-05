@@ -19,7 +19,7 @@
 }
 
 .form-group{
-    padding-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 
@@ -43,11 +43,13 @@ background-color: aliceblue;
 padding: 50px 100px;
 }
 
-.form-group{
-  padding-bottom: 30px;
-}
+
 .input-border-romv{
   outline:none!important;
-}  
+} 
 
+.set-input-margin{
+  border-radius: 25px;
+    margin-top: 10px;
+}
 

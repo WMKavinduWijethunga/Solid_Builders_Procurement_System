@@ -12,13 +12,19 @@ router.get('/sup_view_p_items/:orderID/:supID', supController.ViewSupPurchItemPa
 //redirect to suplier quotation insert page
 router.get('/getinsertQuotation/:oid/:supID', supController.ViewInsertQuotationPage);
 
-router.post('/insertQuotation', supController.createquotation);
+router.post('/insertQuotation/:supID', supController.createquotation);
 
 //supplier login
 router.post('/supLoginValidation', supController.supLoginValidation);
 
 //View Relevent supliier approved Order
 router.get('/supviewapprove/:supID', supController.ViewSupplierAprrovedOrder);
+
+//View Relevent supliier approved Order Items detail
+router.get('/viewApprovedQuotoItems/:qID/:supID', supController.ViewSupplierAprrovedOrderItems);
+
+//View Relevent supliier approved Order delivery detail
+router.get('/viewApprovedQuotoDeleivery/:qID/:supID', supController.viewApprovedQuotoDeleivery);
 
 
 module.exports = router;

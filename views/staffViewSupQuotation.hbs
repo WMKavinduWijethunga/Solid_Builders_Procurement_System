@@ -10,6 +10,8 @@
         <div class="btn-groups">
             <a href="/reqManagement" type="button" class="btn btn-primary">View Orders</a>
             <a href="/readQuoto" type="button" class="btn btn-primary">View Quotation</a>
+            <a href="/viewSup" type="button" class="btn btn-primary">View Suppliers</a>
+            <a href="/viewNCompletedDeliveries" type="button" class="btn btn-primary">Incompleted Delivery</a>
         </div>
     </div>
 
@@ -37,14 +39,14 @@
                     <td class="text-end">
                         <div class="d-flex justify-content-end">
                             <div class="set-btn-margin">
-                                <a href="/viewSupQutoItems/{{this.qID}}" type="button" class="btn btn-dark btn-small"><i
-                                        class="bi bi-eye"></i>View</a>
+                                <a href="/viewSupQutoItems/{{this.qID}}" type="button"
+                                    class="btn btn-dark btn-small background-change"><i class="bi bi-eye"></i>View</a>
                             </div>
 
                             <div style="margin-left: 10dp;">
                                 <form action="/approvelowBu/{{this.qID}}" method="POST">
-                                    <input type="submit" class="btn btn-dark btn-small" value="Approve"
-                                        name="btntoDeliverysts">
+                                    <input type="submit" class="btn btn-dark btn-small background-change"
+                                        value="Approve" name="btntoDeliverysts">
                                 </form>
                             </div>
 

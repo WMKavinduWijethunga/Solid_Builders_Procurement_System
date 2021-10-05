@@ -61,7 +61,7 @@ exports.ViewManagemenetItemPage = (req, res) => {
     });
 
 
-    
+
 }
 
 exports.updateManagementApproval = (req, res) => {
@@ -74,69 +74,70 @@ exports.updateManagementApproval = (req, res) => {
         if (err) throw err; // not connected
         console.log('Connected as ID' + connection.threadId);
 
-        connection.query('UPDATE purchaseorder SET approval = ? where orderID = ?',[btnapprove,orderID], (err,rows) =>{
-            
+        connection.query('UPDATE purchaseorder SET approval = ? where orderID = ?', [btnapprove, orderID], (err, rows) => {
+
             connection.release();
 
-            if(!err){ 
-                res.render('webHome');
-            }else{
+            if (!err) {
+                res.render('managementDashboard');
+
+            } else {
                 console.log(err);
             }
 
         });
-       
-    }); 
+
+    });
 
 }
 
 exports.viewApprovedPOrders = (req, res) => {
-    
+
 
     //connect to DB
     pool.getConnection((err, connection) => {
         if (err) throw err; // not connected
         console.log('Connected as ID' + connection.threadId);
 
-        connection.query('SELECT * FROM solidbuilders.purchaseorder WHERE approval = ? ',["Approve"], (err,rows) =>{
-            
+        connection.query('SELECT * FROM solidbuilders.purchaseorder WHERE approval = ? ', ["Approve"], (err, rows) => {
+
             connection.release();
 
-            if(!err){ 
-                res.render('managementViewApprovedOrders', {rows});
-            }else{
+            if (!err) {
+                res.render('managementViewApprovedOrders', { rows });
+            } else {
                 console.log(err);
             }
 
-            
+
         });
-       
+
     });
 
 }
 
 exports.viewMQuoatation = (req, res) => {
-    
-   // let orderID = req.body.orderID;
+
+    // let orderID = req.body.orderID;
 
     //connect to DB
     pool.getConnection((err, connection) => {
         if (err) throw err; // not connected
         console.log('Connected as ID' + connection.threadId);
 
-        connection.query('SELECT * FROM solidbuilders.purchaseorderitems WHERE purchOID = ?',[req.params.orderID], (err,rows) =>{
-            
+        connection.query('SELECT * FROM solidbuilders.purchaseorderitems WHERE purchOID = ?', [req.params.orderID], (err, rows) => {
+
             connection.release();
 
-            if(!err){ 
-                res.render('managementViewQuotationApproved', {rows});
-            }else{
+            if (!err) {
+                res.render('managementViewQuotationApproved', { rows });
+            } else {
                 console.log(err);
             }
 
-            
+
         });
-       
+
     });
 
 }
@@ -152,51 +153,57 @@ exports.managementLoginValidation = (req, res) => {
         if (err) throw err; // not connected
         console.log('Connected as ID' + connection.threadId);
 
-        connection.query('SELECT * FROM solidbuilders.manager WHERE username = ? AND password = ?',[stUsername,stPassword], (err,rowManagement) =>{
-            
+        connection.query('SELECT * FROM solidbuilders.manager WHERE username = ? AND password = ?', [stUsername, stPassword], (err, rowManagement) => {
+
             connection.release();
 
-            if(!err){ 
-                res.render('managementDashboard', {rowManagement});
-            }else{
+            if (!err) {
+
+                if (rowManagement.length > 0) {
+                    res.render('managementDashboard', { rowManagement });
+                } else {
+                    res.render('managementLogin', { error: "Incorrect Username and/or Password!" });
+                }
+
+            } else {
                 console.log(err);
             }
 
         });
-       
+
     });
 
 }
 
 exports.viewApprovedQuotation = (req, res) => {
-    
+
 
     //connect to DB
     pool.getConnection((err, connection) => {
         if (err) throw err; // not connected
         console.log('Connected as ID' + connection.threadId);
 
-        connection.query('SELECT * FROM solidbuilders.quotation WHERE status = ? ',["Approve"], (err,rows) =>{
-            
+        connection.query('SELECT * FROM solidbuilders.quotation WHERE status = ? ', ["Approve"], (err, rows) => {
+
             connection.release();
 
-            if(!err){ 
-                res.render('managementViewApprovedQuotations', {rows});
-            }else{
+            if (!err) {
+                res.render('managementViewApprovedQuotations', { rows });
+            } else {
                 console.log(err);
             }
 
-            
+
         });
-       
+
     });
 
 }
 
 exports.goToDeliveryPage = (req, res) => {
 
-     res.render('managementAddDeliveryDetails', {qID: req.params.qID, supplierID: req.params.supplierID});
-     
+    res.render('managementAddDeliveryDetails', { qID: req.params.qID, supplierID: req.params.supplierID });
+
 }
 
 //add delivery
@@ -210,6 +217,24 @@ exports.addDelivery = (req, res) => {
 
     //connect to DB
     pool.getConnection((err, connection) => {
+
+        if (err) throw err; // not connected
+        console.log('Connected as ID' + connection.threadId);
+
+        connection.query('INSERT INTO deliverydetails SET qID = ?, supId = ?, location	= ?, contactNo = ?, date = ?, deliveryStatus = ?', [qid, sid, location, number, date, status], (err, rows) => {
+
+            connection.release();
+
+            if (!err) {
+                res.render('managementDashboard');
+            } else {
+                console.log(err);
+            }
+
+        });
+
+    });
+
          if (err) throw err; // not connected
          console.log('Connected as ID' + connection.threadId);
 
@@ -226,5 +251,6 @@ exports.addDelivery = (req, res) => {
          });
        
      }); 
+
 
 }

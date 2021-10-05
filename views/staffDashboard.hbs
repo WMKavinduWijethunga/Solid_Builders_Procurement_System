@@ -1,6 +1,44 @@
-<div class="col-6">
-    <h3>Staff Dashboard</h3>
-    {{#each rowStaff}}
-    <h5>Mr: {{this.usename}}</h5>
-    {{/each}}
+<div class="home-container">
+
+    <figure class="text-center home-heading-container">
+        <blockquote class="blockquote home-heading">
+            <div class="text-dark">
+            </div>
+            <div>
+                <h1>Browse Our Systems</h1>
+                {{#each rowStaff}}
+                <h5>Mr: {{this.usename}}</h5>
+                {{/each}}
+            </div>
+
+            {{#each rowManagement}}
+            <h5>Mr: {{this.username}}</h5>
+            {{/each}}
+        </blockquote>
+    </figure>
+    <div style="margin-top: 100px; padding-bottom: 500px;" class="card-container">
+        <div class="home">
+            <div class="card-group">
+                <div class="card">
+                    <a href="/reqManagement">
+                        <img src="../resources/requisition-img.png" class="card-img-center" alt="..."
+                            style="width: 100px; height: 100px;">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title card-txt-center">Requisition Managment</h5>
+                    </div>
+                </div>
+                <!--
+                <div class="card card-con-padding">
+                    <a href="/viewNCompletedDeliveries">
+                        <img src="../resources/home-order-img.png" class="card-img-center" alt="..."
+                            style="width: 100px; height: 100px;">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title card-txt-center">Order Managment</h5>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
 </div>
